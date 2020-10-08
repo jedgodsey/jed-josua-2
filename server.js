@@ -13,6 +13,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 
+app.get('/', (req, res) => {
+    res.redirect('/cars')
+});
+
+app.use('/cars', ctrl);
+
 
 app.listen(PORT, () => {
     console.log(`This server is running on ${PORT}`)
