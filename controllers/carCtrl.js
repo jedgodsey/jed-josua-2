@@ -11,15 +11,8 @@ router.get('/', (req, res) => {
 
 // GET new
 router.get('/new', (req, res) => {
-  db.Author.find({}, (err, allAuthors) => {
-    if (err) return console.log(err);
-
-    const context = {
-      authors: allAuthors
-    };
-
-    res.render('articles/new', context);
-  });
+    console.log('hitting the route')
+  res.render('new');
 });
 
 // GET show
@@ -37,21 +30,8 @@ router.get('/:articleId', (req, res) => {
 
 // POST create
 router.post('/', (req, res) => {
-  db.Article.create(req.body, (err, newArticle) => {
-    if (err) return console.log(err);
-
-    db.Author.findById(req.body.author, (err, foundAuthor) => {
-      if (err) return console.log(err);
-
-      foundAuthor.articles.push(newArticle._id);
-      foundAuthor.save((err, savedAuthor) => {
-        if (err) return console.log(err);
-
-        res.redirect(`/articles/${newArticle.id}`);
-      })
-    })
-
-  });
+  cars.push(req.body);
+  res.redirect('/')
 });
 
 // GET edit
